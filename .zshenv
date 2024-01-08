@@ -1,0 +1,90 @@
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
+export LANG="${LANG:-en_US.UTF-8}"
+
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export ZHOMEDIR=$XDG_CONFIG_HOME/zsh
+export ZRCDIR=$ZHOMEDIR/rc
+export ZDATADIR=$XDG_DATA_HOME/zsh
+
+export ZCACHEDIR=$XDG_CACHE_HOME/zsh
+
+export DOTFILES="$HOME/.dotfiles"
+export WIN="/mnt/c"
+export TTY=$(tty)
+
+setopt no_global_rcs
+
+typeset -fuz zkbd
+typeset -U path PATH manpath sudo_path
+typeset -xT SUDO_PATH sudo_path
+
+path=(
+  $WIN/vscode/bin
+  $XDG_DATA_HOME/bob/nvim-bin
+	$HOME/.local/share/zsh/zinit/polaris/bin(N-/)
+	$HOME/bin(N-/)
+	$HOME/.local/bin(N-/)
+	$HOME/go/bin(N-/)
+	$HOME/.go/bin(N-/)
+	$HOME/.cargo/bin(N-/)
+	$HOME/.rustup/toolchains/*/bin(N-/)
+	$DOTFILES/bin(N-/)
+	$path
+)
+export PATH
+
+# zsh function search path
+fpath=(
+	$HOME/.zfunc(N-/)
+	$ZHOMEDIR/zfunc(N-/)
+	$ZHOMEDIR/completions(N-/)
+	/usr/local/share/zsh/site-functions(N-/)
+	/usr/share/zsh/site-functions(N-/)
+	$fpath
+)
+export FPATH
+
+if SHELL=$(builtin command -v zsh); then
+	export SHELL
+else
+	unset SHELL
+fi
+
+if builtin command -v firefox > /dev/null 2>&1; then
+    export BROWSER="firefox"
+fi
+
+if builtin command -v nvim > /dev/null 2>&1; then
+	export EDITOR=${EDITOR:-nvim}
+  export MANPAGER="nvim +Man!"
+  alias v="$EDITOR"
+  alias vi="$EDITOR"
+else
+	export EDITOR=${EDITOR:-vim}
+fi
+export SYSTEMD_EDITOR=$EDITOR
+export VISUAL="$EDITOR"
+
+export LESS='--no-init -R --shift 4 --LONG-PROMPT --quit-if-one-screen'
+if builtin command -v lesspipe.sh > /dev/null 2>&1; then
+	export LESSOPEN="|lesspipe.sh %s"
+fi
+
+if builtin command -v dircolors > /dev/null 2>&1 && [ -f "$ZHOMEDIR/dircolors" ]; then
+	eval $(dircolors "$ZHOMEDIR/dircolors")
+	export USER_LS_COLORS=$LS_COLORS
+else
+	export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+fi
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

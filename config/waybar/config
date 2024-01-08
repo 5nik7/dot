@@ -1,0 +1,38 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": [
+        "sway/workspaces",
+        "sway/window"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "cpu",
+        "custom/separator",
+        "memory"
+    ],
+    "fixed-center": true,
+
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}"
+    },
+
+    "clock": {
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% cpu"
+    },
+    "memory": {
+        "format": "{}% mem"
+    },
+
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    }
+}
+
