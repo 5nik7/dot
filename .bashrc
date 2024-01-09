@@ -22,34 +22,22 @@ export BROWSER="firefox"
 export WIN="/mnt/c"
 export DOTFILES="$HOME/.dotfiles"
 
-if command -v nvim > /dev/null 2>&1; then
-	export EDITOR="nvim"
-  	export MANPAGER="nvim +Man!"
-elif
-	command -v vim > /dev/null 2>&1; then
-	export EDITOR="vim"
-else
-	export EDITOR="nano"
-fi
-export SYSTEMD_EDITOR=$EDITOR
-export VISUAL="$EDITOR"
-
-if command -v fzf > /dev/null 2>&1; then
-  export FZF_DEFAULT_OPTS="--border sharp \
+if command -v fzf >/dev/null 2>&1; then
+	export FZF_DEFAULT_OPTS="--border sharp \
   --prompt '∷ ' \
   --pointer ▶ \
   --marker ⇒"
 fi
 
-if command -v fzf > /dev/null 2>&1; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if command -v fzf >/dev/null 2>&1; then
+	export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+	export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
 function source_file() {
-  if [ -r "$1" ]; then
-    source "$1"
-  fi
+	if [ -r "$1" ]; then
+		source "$1"
+	fi
 }
 
 source_file "$HOME/.bash_functions"
@@ -66,12 +54,25 @@ prepend_path "$XDG_DATA_HOME/bob/nvim-bin"
 
 source_file "/usr/share/bash-completion/bash_completion"
 
+if command -v nvim >/dev/null 2>&1; then
+	export EDITOR="nvim"
+	export MANPAGER="nvim +Man!"
+elif
+	command -v vim >/dev/null 2>&1
+then
+	export EDITOR="vim"
+else
+	export EDITOR="nano"
+fi
+export SYSTEMD_EDITOR=$EDITOR
+export VISUAL="$EDITOR"
+
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
+# if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+#    GIT_PROMPT_ONLY_IN_REPO=1
+#    source "$HOME/.bash-git-prompt/gitprompt.sh"
+# fi
 # eval "$(starship init bash)"
