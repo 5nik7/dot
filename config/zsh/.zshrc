@@ -45,8 +45,8 @@ source "$ZRCDIR/alias.zsh"
 #--------------------------------------------------------------#
 source "$ZRCDIR/bindkey.zsh"
 
-source-safe "$ZHOMEDIR/zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
-source "$ZHOMEDIR/zkbd/bindkey.zsh"
+# source-safe "$ZHOMEDIR/zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
+# source "$ZHOMEDIR/zkbd/bindkey.zsh"
 
 
 #--------------------------------------------------------------#
@@ -72,4 +72,4 @@ if [ -n "$ZSHRC_CI_TEST" ]; then
 	exit
 fi
 
-eval "$(mise activate)"
+# eval "$(mise activate)"
