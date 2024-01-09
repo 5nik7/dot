@@ -1,10 +1,10 @@
 #!/bin/bash
 
 function load-wallpaper() {
-  local active-wallpaper="$(< "${HOME}/.wallpaper")"
-    if [ -f "$active-wallpaper" ]; then
-      swaybg -i "$active-wallpaper"
-    fi
+	wallpaper="$(<"${HOME}/.bg")"
+	if [ -f "$wallpaper" ]; then
+		swaybg -i "$wallpaper" -m fill
+	fi
 }
 
 load-wallpaper

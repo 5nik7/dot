@@ -1,3 +1,26 @@
+function weather {
+    if [[ "$1" == "help" ]]; then
+        curl "wttr.in/:help"
+    else
+        curl "wttr.in/Yakima?uFQ$1"
+    fi
+}
+
+function femoji() {
+    emojis=$(curl -sSL 'https://git.io/JXXO7')
+    selected_emoji=$(echo $emojis | fzf)
+    echo $selected_emoji
+}
+
+
+function yayin() {
+    yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
+}
+
+function yayrm() {
+    yay -Qq | fzf -q "$1" -m --preview 'yay -Qi {1}' | xargs -ro yay -Rns
+}
+
 
 #==============================================================#
 ##         Override Commands                                  ##
