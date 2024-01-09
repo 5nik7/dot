@@ -1,6 +1,10 @@
-#!/usr/bin/zsh
+#!/bin/bash
 
-function walbg() {
-    wal -n -i "$@"
-    swaybg -i "$(< "${HOME}/.cache/wal/wal")"
+function load-wallpaper() {
+  local active-wallpaper="$(< "${HOME}/.wallpaper")"
+    if [ -f "$active-wallpaper" ]; then
+      swaybg -i "$active-wallpaper"
+    fi
 }
+
+load-wallpaper
