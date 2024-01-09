@@ -66,10 +66,4 @@ source "$ZRCDIR/post_load.zsh"
 #--------------------------------------------------------------#
 source-safe "$ZHOMEDIR/.zshrc.local"
 
-
-if [ -n "$ZSHRC_CI_TEST" ]; then
-	echo "zshrc load complete"
-	exit
-fi
-
 # eval "$(mise activate)"
