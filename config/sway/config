@@ -6,9 +6,8 @@ exec_always --no-startup-idc ~/.config/sway/scripts/xdpk.sh
 
 exec --no-startup-id autotiling-rs
 exec nwg-look -a
-exec_always --no-startup-id workstyle &> /tmp/workstyle.log
+exec sworkstyle &> /tmp/sworkstyle.log
 exec_always --no-startup-id flashfocus
-
 # exec eww open-many bar0 bar1 bar2
 exec_always --no-startup-id ~/.config/waybar/scripts/launch_waybar.sh
 exec_always --no-startup-id ~/.config/sway/scripts/wallpaper.sh

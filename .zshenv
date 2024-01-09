@@ -24,14 +24,15 @@ typeset -xT SUDO_PATH sudo_path
 
 path=(
 	$DOTFILES/bin(N-/)
-  	$WIN/vscode/bin
-  	$XDG_DATA_HOME/bob/nvim-bin
+  $WIN/vscode/bin
+  $XDG_DATA_HOME/bob/nvim-bin
 	$HOME/.local/share/zsh/zinit/polaris/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/.local/bin(N-/)
 	$HOME/go/bin(N-/)
 	$HOME/.cargo/bin(N-/)
 	$HOME/.rustup/toolchains/*/bin(N-/)
+	$XDG_DATA_HOME/gem/ruby/3.0.0/bin(N-/)
 	$path
 )
 export PATH
