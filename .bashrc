@@ -35,23 +35,7 @@ export SYSTEMD_EDITOR=$EDITOR
 export VISUAL="$EDITOR"
 
 if command -v fzf > /dev/null 2>&1; then
-  FZF_COLORS="bg+:-1,\
-  fg:gray,\
-  fg+:white,\
-  border:black,\
-  spinner:0,\
-  hl:yellow,\
-  header:blue,\
-  info:green,\
-  pointer:red,\
-  marker:blue,\
-  prompt:gray,\
-  hl+:red"
-
-  export FZF_DEFAULT_OPTS="--height 60% \
-  --border sharp \
-  --layout reverse \
-  --color '$FZF_COLORS' \
+  export FZF_DEFAULT_OPTS="--border sharp \
   --prompt '∷ ' \
   --pointer ▶ \
   --marker ⇒"

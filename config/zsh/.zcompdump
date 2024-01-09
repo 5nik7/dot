@@ -265,7 +265,7 @@ _comps=(
 'declare' '_typeset'
 '-default-' '_default'
 'deletemark' '_jump_showmarks_deletemark'
-'delta' '_gnu_generic'
+'delta' '_sccs'
 'deno' '_deno'
 'designate' '_openstack'
 'devtodo' '_devtodo'
@@ -1720,7 +1720,6 @@ _comps=(
 'zmv' '_zmv'
 'zone' '_hosts'
 'zoxide' '_zoxide'
-'__zoxide_z' '__zoxide_z_complete'
 'zparseopts' '_zparseopts'
 'zpool' '_zfs'
 'zpty' '_zpty'
@@ -1842,44 +1841,44 @@ zle -C _next_tags .list-choices _next_tags
 zle -C _read_comp .complete-word _read_comp
 
 autoload -Uz _autocomplete__ancestor_dirs _autocomplete__command _autocomplete__compadd_opts_len _autocomplete__history_lines _autocomplete__is_glob \
-            _autocomplete__recent_paths _autocomplete__should_insert_unambiguous _autocomplete__unambiguous _kitty _afew \
-            _android _archlinux-java _artisan _atach _autocomplete__ancestor_dirs \
-            _autocomplete__command _autocomplete__compadd_opts_len _autocomplete__history_lines _autocomplete__is_glob _autocomplete__recent_paths \
-            _autocomplete__should_insert_unambiguous _autocomplete__unambiguous _avdmanager _bitcoin-cli _bower \
-            _bundle _cap _cask _ccache _cd-gitroot \
-            _cf _chatblade _choc _chromium _clang-check \
-            _clang-format _clang-tidy _cmake _coffee _conan \
-            _concourse _console _cppcheck _dad _dart \
-            _dget _dhcpcd _diana _direnv _docpad \
-            _do-release-upgrade _drush _ecdsautil _emacs _emacsclient \
-            _emulator _envdir _exportfs _fab _fail2ban-client \
-            _fast-theme _fd _ffind _fleetctl _flutter \
-            _fvm _fwupdmgr _gas _ghc _gist \
-            _git-flow _git-pulls _git-revise _git-wtf _glances \
-            _golang _google _gpgconf _grpcurl _gtk-launch \
-            _hello _hledger _homestead _httpie _ibus \
-            _include-what-you-use _inxi _jest _jmeter _jmeter-plugins \
-            _jonas _jrnl _jump_showmarks_deletemark _kak _kitchen \
-            _knife _language_codes _lilypond _lunchy _mc \
-            _middleman _mina _mix _mkcert _mssh \
-            _mussh _mvn _nano _nanoc _neofetch \
-            _networkQuality _nftables _node _nvm _openssl \
-            _openvpn3 _optirun _patool _periscope _pgsql_utils \
-            _phing _pixz _pkcon _play _pm2 \
-            _port _protoc _pygmentize _qmk _rails \
-            _ralio _redis-cli _rfkill _rg _rkt \
-            _rmlint _rslsync _rspec _rsvm _rubocop \
-            _sbt _scala _screencapture _scrub _sdd \
-            _sdkmanager _setcap _sfdx _shallow-backup _shellcheck \
-            _showoff _srm _stack _subliminal _supervisorctl \
-            _supervisord _svm _teamocil _thor _tldr \
-            _tmuxinator _tmuxp _tox _tsc _ts-node \
-            _udisksctl _ufw _virtualbox _vnstat _wemux \
-            _wg-quick _xsel _yarn _zcash-cli _zinit \
-            _zoxide _boolean _git-lfs _bat _bob \
-            _bootctl _busctl _cargo _coredumpctl _curl \
-            _deno _eza _fd _gh _ghq \
-            _glow _hostnamectl _journalctl _kernel-install _kitty \
+            _autocomplete__recent_paths _autocomplete__should_insert_unambiguous _autocomplete__unambiguous _afew _android \
+            _archlinux-java _artisan _atach _autocomplete__ancestor_dirs _autocomplete__command \
+            _autocomplete__compadd_opts_len _autocomplete__history_lines _autocomplete__is_glob _autocomplete__recent_paths _autocomplete__should_insert_unambiguous \
+            _autocomplete__unambiguous _avdmanager _bitcoin-cli _bower _bundle \
+            _cap _cask _ccache _cd-gitroot _cf \
+            _chatblade _choc _chromium _clang-check _clang-format \
+            _clang-tidy _cmake _coffee _conan _concourse \
+            _console _cppcheck _dad _dart _dget \
+            _dhcpcd _diana _direnv _docpad _do-release-upgrade \
+            _drush _ecdsautil _emacs _emacsclient _emulator \
+            _envdir _exportfs _fab _fail2ban-client _fast-theme \
+            _fd _ffind _fleetctl _flutter _fvm \
+            _fwupdmgr _gas _ghc _gist _git-flow \
+            _git-pulls _git-revise _git-wtf _glances _golang \
+            _google _gpgconf _grpcurl _gtk-launch _hello \
+            _hledger _homestead _httpie _ibus _include-what-you-use \
+            _inxi _jest _jmeter _jmeter-plugins _jonas \
+            _jrnl _jump_showmarks_deletemark _kak _kitchen _knife \
+            _language_codes _lilypond _lunchy _mc _middleman \
+            _mina _mix _mkcert _mssh _mussh \
+            _mvn _nano _nanoc _neofetch _networkQuality \
+            _nftables _node _nvm _openssl _openvpn3 \
+            _optirun _patool _periscope _pgsql_utils _phing \
+            _pixz _pkcon _play _pm2 _port \
+            _protoc _pygmentize _qmk _rails _ralio \
+            _redis-cli _rfkill _rg _rkt _rmlint \
+            _rslsync _rspec _rsvm _rubocop _sbt \
+            _scala _screencapture _scrub _sdd _sdkmanager \
+            _setcap _sfdx _shallow-backup _shellcheck _showoff \
+            _srm _stack _subliminal _supervisorctl _supervisord \
+            _svm _teamocil _thor _tldr _tmuxinator \
+            _tmuxp _tox _tsc _ts-node _udisksctl \
+            _ufw _virtualbox _vnstat _wemux _wg-quick \
+            _xsel _yarn _zcash-cli _zinit _zoxide \
+            _boolean _git-lfs _bat _bob _bootctl \
+            _busctl _cargo _coredumpctl _curl _deno \
+            _eza _fd _gh _ghq _glow \
+            _hostnamectl _journalctl _kernel-install _kitty _less \
             _libinput _localectl _loginctl _luarocks _luarocks-admin \
             _machinectl _meson _networkctl _ninja _oomctl \
             _pacman _parallel _paru _playerctl _pulseaudio \

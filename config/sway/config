@@ -6,8 +6,8 @@ exec_always --no-startup-idc ~/.config/sway/scripts/xdpk.sh
 
 exec --no-startup-id autotiling-rs
 exec nwg-look -a
-exec_always --no-startup-id workstyle &> /tmp/workstyle.log
-exec_always --no-startup-id flashfocus
+exec workstyle &> /tmp/workstyle.log
+exec flashfocus
 
 # exec eww open-many bar0 bar1 bar2
 exec_always --no-startup-id ~/.config/waybar/scripts/launch_waybar.sh
@@ -29,7 +29,7 @@ set $right l
 set $term kitty
 set $term-float kitty
 set $browser firefox
-# set $filemanager thunar
+set $filemanager thunar
 
 # output "*" background $wallpaper fill
 # output "*" resolution 2560x1410@170Hz scale 1 pos 0 0
@@ -61,7 +61,7 @@ popup_during_fullscreen smart
     bindsym $mod+Return exec $term
 
     # Start a file manager
-    # bindsym $mod+e exec $filemanager
+    bindsym $mod+e exec $filemanager
 
     # Start a browser
     bindsym $mod+w exec $browser

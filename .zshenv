@@ -52,11 +52,6 @@ else
 	unset SHELL
 fi
 
-# if builtin command -v firefox > /dev/null 2>&1; then
-#     export BROWSER="firefox"
-# fi
-
-
 if command -v nvim > /dev/null 2>&1; then
 	export EDITOR="nvim"
   	export MANPAGER="nvim +Man!"

@@ -21,6 +21,26 @@ function yayrm() {
     yay -Qq | fzf -q "$1" -m --preview 'yay -Qi {1}' | xargs -ro yay -Rns
 }
 
+function lnk() {
+    orig_file="$DOTFILES/$1"
+    if [ -n "$2" ]; then
+        dest_file="$HOME/$2"
+    else
+        if [[ $1 == config/* ]]; then
+            dest_file="$HOME/.${1}"
+        else
+            dest_file="$HOME/$1"
+        fi
+    fi
+
+    mkdir -p "$(dirname "$orig_file")"
+    mkdir -p "$(dirname "$dest_file")"
+
+    rm -rf "$dest_file"
+    ln -s "$orig_file" "$dest_file"
+    echo "$orig_file -> $dest_file"
+}
+
 
 #==============================================================#
 ##         Override Commands                                  ##
