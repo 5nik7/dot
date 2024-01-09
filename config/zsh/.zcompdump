@@ -1720,6 +1720,7 @@ _comps=(
 'zmv' '_zmv'
 'zone' '_hosts'
 'zoxide' '_zoxide'
+'__zoxide_z' '__zoxide_z_complete'
 'zparseopts' '_zparseopts'
 'zpool' '_zfs'
 'zpty' '_zpty'
