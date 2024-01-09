@@ -14,12 +14,10 @@ alias "......"="cd ../../../../.."
 alias "......."="cd ../../../../../.."
 alias "........"="cd ../../../../../../.."
 alias zcompile_zshrc='zcompile ~/.zshrc'
-alias rez='exec zsh'
+alias reloadzsh='exec zsh'
 alias sc='screen'
-alias l='ls'
 alias less-plain='LESS="" less'
 alias sudo='sudo -H '
-alias cl='clear'
 alias dircolor='eval `dircolors -b $ZHOMEDIR/dircolors`'
 alias quit='exit'
 alias truecolor-terminal='export COLORTERM=truecolor'
@@ -33,16 +31,24 @@ alias dd='cd $DOTFILES && ranger'
 alias dz='cd $DOTFILES/config/zsh && ranger'
 alias path='echo $PATH | tr ":" "\n"'
 
+if command -v ranger > /dev/null 2>&1; then
+	alias d='ranger'
+	alias dd='cd $DOTFILES && ranger'
+	alias dz='cd $DOTFILES/config/zsh && ranger'
+fi
+
+if command -v bat > /dev/null 2>&1; then
+	alias cat='bat'
+fi
+
+if command -v lazygit > /dev/null 2>&1; then
+	alias lg='lazygit'
+fi
+
 # history
 alias history-mem='fc -rl'
 alias history-import='fc -RI'
 
-# ls
-alias la='ls -aF --color=auto'
-alias lla='ls -alF --color=auto'
-alias lal='ls -alF --color=auto'
-alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
 alias ldir='ls -d .[a-zA-Z]* --color=auto'
 
 # chmod
@@ -54,9 +60,10 @@ alias 777='chmod 777'
 alias gre='grep -H -n -I --color=auto'
 
 ## application ##
-# vi
+alias v="$EDITOR"
 alias vi="$EDITOR"
 alias sv="sudo $EDITOR"
+alias svi="sudo $EDITOR"
 
 ## development ##
 alias py='python'
@@ -185,7 +192,10 @@ alias disk-usage='sudo ncdu --color dark -rr -x --exclude .git --exclude node_mo
 #==============================================================#
 
 if [ -f /etc/arch-release ] ;then
+	alias lg='lazygit'
 	# install
+	alias pacin="pacman -Slq | fzf -m --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk \"{print \$2}\")' | xargs -ro sudo pacman -S"
+	alias pacrem="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 	alias pac-update='sudo pacman -Sy'
 	alias pac-upgrade='sudo pacman -Syu'
 	alias pac-upgrade-force='sudo pacman -Syyu'
@@ -213,6 +223,10 @@ if [ -f /etc/arch-release ] ;then
 	alias pac-dependency='pacman -Qoq '
 	# aur
 	if builtin command -v paru > /dev/null 2>&1; then
+		alias paruin="paru -Slq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print \$2}\")' | xargs -ro  paru -S"
+		alias parucom="paru -Gc"
+		alias parupd="paru -Qua"
+		alias parucheck="paru -Gp"
 		alias paru-installed-list='paru -Qm'
 		alias paru-clean='paru -Sc'
 	fi

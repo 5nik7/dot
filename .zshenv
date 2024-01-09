@@ -5,14 +5,14 @@ export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export ZHOMEDIR=$XDG_CONFIG_HOME/zsh
-export ZRCDIR=$ZHOMEDIR/rc
-export ZDATADIR=$XDG_DATA_HOME/zsh
+export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+export ZHOMEDIR="${ZHOMEDIR:-$XDG_CONFIG_HOME/zsh}"
+export ZRCDIR="${ZRCDIR:-$ZHOMEDIR/rc}"
+export ZFUNCDIR="${ZFUNCDIR:-$ZHOMEDIR/zfunc}"
+export ZDATADIR="${ZDATADIR:-$XDG_DATA_HOME/zsh}"
+export ZCACHEDIR="${ZCACHEDIR:-$XDG_CACHE_HOME/zsh}"
 
-export ZCACHEDIR=$XDG_CACHE_HOME/zsh
-
-export DOTFILES="$HOME/.dotfiles"
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
 export WIN="/mnt/c"
 export TTY=$(tty)
 
@@ -23,24 +23,22 @@ typeset -U path PATH manpath sudo_path
 typeset -xT SUDO_PATH sudo_path
 
 path=(
-  $WIN/vscode/bin
-  $XDG_DATA_HOME/bob/nvim-bin
+	$DOTFILES/bin(N-/)
+  	$WIN/vscode/bin
+  	$XDG_DATA_HOME/bob/nvim-bin
 	$HOME/.local/share/zsh/zinit/polaris/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/.local/bin(N-/)
 	$HOME/go/bin(N-/)
-	$HOME/.go/bin(N-/)
 	$HOME/.cargo/bin(N-/)
 	$HOME/.rustup/toolchains/*/bin(N-/)
-	$DOTFILES/bin(N-/)
 	$path
 )
 export PATH
 
 # zsh function search path
 fpath=(
-	$HOME/.zfunc(N-/)
-	$ZHOMEDIR/zfunc(N-/)
+	$ZFUNCDIR(N-/)
 	$ZHOMEDIR/completions(N-/)
 	/usr/local/share/zsh/site-functions(N-/)
 	/usr/share/zsh/site-functions(N-/)
@@ -48,33 +46,35 @@ fpath=(
 )
 export FPATH
 
-if SHELL=$(builtin command -v zsh); then
+if SHELL=$(command -v zsh); then
 	export SHELL
 else
 	unset SHELL
 fi
 
-if builtin command -v firefox > /dev/null 2>&1; then
-    export BROWSER="firefox"
-fi
+# if builtin command -v firefox > /dev/null 2>&1; then
+#     export BROWSER="firefox"
+# fi
 
-if builtin command -v nvim > /dev/null 2>&1; then
-	export EDITOR=${EDITOR:-nvim}
-  export MANPAGER="nvim +Man!"
-  alias v="$EDITOR"
-  alias vi="$EDITOR"
+
+if command -v nvim > /dev/null 2>&1; then
+	export EDITOR="nvim"
+  	export MANPAGER="nvim +Man!"
+elif
+	command -v vim > /dev/null 2>&1; then
+	export EDITOR="vim"
 else
-	export EDITOR=${EDITOR:-vim}
+	export EDITOR="nano"
 fi
 export SYSTEMD_EDITOR=$EDITOR
 export VISUAL="$EDITOR"
 
-export LESS='--no-init -R --shift 4 --LONG-PROMPT --quit-if-one-screen'
-if builtin command -v lesspipe.sh > /dev/null 2>&1; then
-	export LESSOPEN="|lesspipe.sh %s"
-fi
+# export LESS='--no-init -R --shift 4 --LONG-PROMPT --quit-if-one-screen'
+# if builtin command -v lesspipe.sh > /dev/null 2>&1; then
+# 	export LESSOPEN="|lesspipe.sh %s"
+# fi
 
-if builtin command -v dircolors > /dev/null 2>&1 && [ -f "$ZHOMEDIR/dircolors" ]; then
+if command -v dircolors > /dev/null 2>&1 && [ -f "$ZHOMEDIR/dircolors" ]; then
 	eval $(dircolors "$ZHOMEDIR/dircolors")
 	export USER_LS_COLORS=$LS_COLORS
 else
