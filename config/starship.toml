@@ -47,9 +47,9 @@ show_always = true
 [directory]
 format = '[$path]($style) '
 repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) '
-style = "color6 italic"
+style = "color14 italic"
 before_repo_root_style = "color16 italic"
-repo_root_style = "color6 bold italic"
+repo_root_style = "color6 bold italic underline"
 truncation_length = 10
 truncate_to_repo = false
 use_os_path_sep = false
@@ -60,7 +60,7 @@ read_only = " "
 [git_branch]
 symbol = ""
 # symbol = " "
-format = '[$symbol](color10) [$branch](color10) '
+format = '[$symbol](color11) [$branch](color11) '
 
 [git_status]
 disabled = false
