@@ -56,12 +56,15 @@ zinit wait'0a' lucid \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	atload"source $ZHOMEDIR/rc/pluginconfig/fast-syntax-highlighting.zsh" \
 	light-mode for @zdharma-continuum/fast-syntax-highlighting
-
-PROMPT="%~"$'\n'"> "
-zinit wait'!0b' lucid depth=1 \
-	atload"source $ZHOMEDIR/rc/pluginconfig/powerlevel10k_atload.zsh" \
-	light-mode for @romkatv/powerlevel10k
-
+#
+# PROMPT="%~"$'\n'"> "
+# zinit wait'!0b' lucid depth=1 \
+# 	atload"source $ZHOMEDIR/rc/pluginconfig/powerlevel10k_atload.zsh" \
+# 	light-mode for @romkatv/powerlevel10k
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 #--------------------------------#
 # history
@@ -164,9 +167,9 @@ zinit wait'2' lucid \
 #--------------------------------#
 # extension
 #--------------------------------#
-zinit wait'1' lucid \
-	atload"source $ZHOMEDIR/rc/pluginconfig/emoji-cli_atload.zsh" \
-	light-mode for @b4b4r07/emoji-cli
+# zinit wait'1' lucid \
+# 	atload"source $ZHOMEDIR/rc/pluginconfig/emoji-cli_atload.zsh" \
+# 	light-mode for @b4b4r07/emoji-cli
 
 zinit wait'0' lucid \
 	light-mode for @mafredri/zsh-async
@@ -216,16 +219,16 @@ zinit wait'1' lucid \
 	light-mode for @dbrgn/tealdeer
 zinit ice wait'1' lucid as"completion" mv'zsh_tealdeer -> _tldr'
 zinit snippet https://github.com/dbrgn/tealdeer/blob/main/completion/zsh_tealdeer
+#
+# zinit wait'1' lucid \
+# 	from"gh-r" as"program" bpick'*linux*' \
+# 	light-mode for @dalance/procs
 
-zinit wait'1' lucid \
-	from"gh-r" as"program" bpick'*linux*' \
-	light-mode for @dalance/procs
-
-zinit wait'1' lucid \
-	from"gh-r" as"program" pick"delta*/delta" \
-	atload"compdef _gnu_generic delta" \
-	light-mode for @dandavison/delta
-
+# zinit wait'1' lucid \
+# 	from"gh-r" as"program" pick"delta*/delta" \
+# 	atload"compdef _gnu_generic delta" \
+# 	light-mode for @dandavison/delta
+#
 
 
 #--------------------------------#
@@ -271,8 +274,8 @@ zinit wait'1' lucid \
 	light-mode for @cli/cli
 
 
-# etc #
-zinit wait'1' lucid \
-	as"program" pick"emojify" \
-	light-mode for @mrowa44/emojify
-
+# # etc #
+# zinit wait'1' lucid \
+# 	as"program" pick"emojify" \
+# 	light-mode for @mrowa44/emojify
+#
