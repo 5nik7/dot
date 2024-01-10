@@ -1,0 +1,157 @@
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+
+#                                 
+
+palette = "dream"
+
+add_newline = true
+command_timeout = 1000
+
+format = "$os$username$hostname$directory$git_branch$git_status$line_break$character"
+
+right_format = "$cmd_duration$time"
+
+[shell]
+format = '[$indicator]($style)'
+fish_indicator = '󰈺 '
+powershell_indicator = '_'
+unknown_indicator = 'mystery shell'
+style = 'color13 italic'
+disabled = false
+
+[character]
+success_symbol = "[󰇁](color10)"
+error_symbol = "[󰇁](color9)"
+# success_symbol = "[](green bold)"
+# error_symbol= "[](green red)"
+vimcmd_symbol = "[:](color4 bold)"
+format = "$symbol "
+
+
+[hostname]
+ssh_only = false
+format = '[@$hostname](white italic)[:](color5 italic)'
+style = "white"
+trim_at = "."
+disabled = false
+
+[username]
+style_user = 'color13 italic'
+style_root = 'color13 italic'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[directory]
+format = '[$path]($style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) '
+style = "color6 italic"
+before_repo_root_style = "color16 italic"
+repo_root_style = "color6 bold italic"
+truncation_length = 10
+truncate_to_repo = false
+use_os_path_sep = false
+use_logical_path = false
+home_symbol = "~"
+read_only = " "
+
+[git_branch]
+symbol = ""
+# symbol = " "
+format = '[$symbol](color10) [$branch](color10) '
+
+[git_status]
+disabled = false
+style = "fg:color3 bg:none"
+staged = " ${count} "                                               # nf-fa-check
+modified = "󰤌 ${count} "                                             # nf-fa-edit
+renamed = ""                                                         # nf-md-cursor_text
+untracked = " ${count} "                                            # nf-fa-question
+deleted = "[ ${count}](red) "                                       # nf-fa-remove
+conflicted = " ${count} "                                           # nf-fa-flag
+stashed = ""                                                         # nf-fa-bank
+up_to_date = ""
+ahead = "${count} "                                                 # nf-md-arrow_expand_up
+behind = "${count} "                                                # nf-md-arrow_expand_down
+diverged = "󰯎 ${ahead_count} ${behind_count} "                       # nf-md-arrow_expand_vertical
+ignore_submodules = true
+format = "[($staged$modified$untracked$deleted$conflicted)]($style)"
+
+[line_break]
+disabled = true
+
+[cmd_duration]
+format = "[$duration](yellow) "
+disabled = true
+
+[nodejs]
+detect_folders = ['']
+detect_files = ['package.json', '.node-version']
+style = "green"
+format = " [$symbol($version)]($style) "
+
+[ruby]
+symbol = " "
+style = "red"
+format = "[$symbol($version)]($style) "
+
+[python]
+format = '[\($virtualenv\)](yellow)'
+
+[os]
+format = "[$symbol](blue) "
+disabled = true
+
+[os.symbols]
+Alpine = ""
+# Arch = ""
+Arch = ""
+# Arch = "󰚌"
+CentOS = ""
+Debian = "󰣚"
+Fedora = ""
+FreeBSD = ""
+Gentoo = ""
+Linux = ""
+Macos = ""
+Mint = ""
+NixOS = ""
+openSUSE = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+Ubuntu = ""
+Unknown = ""
+# Windows = ""
+Windows = "󰍲"
+# Windows = ""
+# Windows = "󰖳"
+# Windows = "󰨡"
+# Windows = "󱇙"
+# Windows = "󰕰"
+# Windows = "󰨑"
+# Windows = "󰚌"
+
+[palettes.dream]
+color0 = "#2E354F"
+color1 = "#ED558C"
+color2 = "#70FA85"
+color3 = "#FFC994"
+color4 = "#596EFF"
+color5 = "#8202f6"
+color6 = "#00FFD7"
+color7 = "#3b3b3f"
+color8 = "#434E73"
+color9 = "#FD5A96"
+color10 = "#afff87"
+color11 = "#f9ff89"
+color12 = "#5DB1FE"
+color13 = "#875FFF"
+color14 = "#00f2ff"
+color15 = "#C0CAF5"
+foreground = "#D6E4FF"
+background = "#151B30"
+color16 = "#627481"
+color17 = "#7206FF"

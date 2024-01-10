@@ -42,7 +42,7 @@ function source_file() {
 
 source_file "$HOME/.bash_functions"
 source_file "$HOME/.bash_aliases"
-source_file "$HOME/.bash_prompt"
+# source_file "$HOME/.bash_prompt"
 source_file "$HOME/.cargo/env"
 
 export PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
@@ -75,4 +75,4 @@ export NVM_DIR="$HOME/.config/nvm"
 #    GIT_PROMPT_ONLY_IN_REPO=1
 #    source "$HOME/.bash-git-prompt/gitprompt.sh"
 # fi
-# eval "$(starship init bash)"
+eval "$(starship init bash)"
