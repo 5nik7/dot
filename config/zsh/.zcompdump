@@ -265,7 +265,7 @@ _comps=(
 'declare' '_typeset'
 '-default-' '_default'
 'deletemark' '_jump_showmarks_deletemark'
-'delta' '_sccs'
+'delta' '_gnu_generic'
 'deno' '_deno'
 'designate' '_openstack'
 'devtodo' '_devtodo'
