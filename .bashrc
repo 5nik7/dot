@@ -24,9 +24,9 @@ export DOTFILES="$HOME/.dotfiles"
 
 if command -v fzf >/dev/null 2>&1; then
 	export FZF_DEFAULT_OPTS="--border sharp \
-  --prompt '∷ ' \
-  --pointer ▶ \
-  --marker ⇒"
+	--prompt '∷ ' \
+	--pointer ▶ \
+	--marker ⇒"
 fi
 
 if command -v fzf >/dev/null 2>&1; then

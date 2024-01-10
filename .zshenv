@@ -24,8 +24,8 @@ typeset -xT SUDO_PATH sudo_path
 
 path=(
 	$DOTFILES/bin(N-/)
-  $WIN/vscode/bin
-  $XDG_DATA_HOME/bob/nvim-bin
+	$WIN/vscode/bin(N-/)
+	$XDG_DATA_HOME/bob/nvim-bin(N-/)
 	$HOME/.local/share/zsh/zinit/polaris/bin(N-/)
 	$HOME/bin(N-/)
 	$HOME/.local/bin(N-/)
@@ -55,7 +55,7 @@ fi
 
 if command -v nvim > /dev/null 2>&1; then
 	export EDITOR="nvim"
-  	export MANPAGER="nvim +Man!"
+	export MANPAGER="nvim +Man!"
 elif
 	command -v vim > /dev/null 2>&1; then
 	export EDITOR="vim"
