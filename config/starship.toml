@@ -1,157 +1,223 @@
-## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
-## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
-## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+#                                  
 
-#                                 
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# add_newline = false
+# scan_timeout = 10
+# command_timeout = 1000
+
+format ="""
+$os\
+$username\
+$hostname\
+[:](color5 italic)$directory\
+$git_branch\
+$git_status\
+$python\
+$ruby\
+$fill\
+$cmd_duration\
+$time\
+[ ](color19)$shell\
+$line_break\
+$character\
+"""
 
 palette = "dream"
 
-add_newline = true
-command_timeout = 1000
+[fill]
+# symbol = ''
+symbol = ''
+style = 'black'
 
-format = "$os$username$hostname$directory$git_branch$git_status$line_break$character"
 
-right_format = "$cmd_duration$time"
+# [custom.64]
+# when = ' test "$MSYSTEM" = "MINGW64" '
+# style = 'color15 italic bold'
+# format = '[:](color20 italic)[64]($style)'
 
 [shell]
-format = '[$indicator]($style)'
-fish_indicator = '󰈺 '
-powershell_indicator = '_'
-unknown_indicator = 'mystery shell'
-style = 'color13 italic'
+format = ' [$indicator]($style)'
+fish_indicator = ' 󰈺 '
+# powershell_indicator = ' _ '
+powershell_indicator = '  '
+bash_indicator = ' 󱆃 '
+zsh_indicator = ' 󱆃 '
+unknown_indicator = ' mystery shell '
+style = 'bg:color18 fg:background'
 disabled = false
 
-[character]
-success_symbol = "[󰇁](color10)"
-error_symbol = "[󰇁](color9)"
-# success_symbol = "[](green bold)"
-# error_symbol= "[](green red)"
-vimcmd_symbol = "[:](color4 bold)"
-format = "$symbol "
-
-
-[hostname]
-ssh_only = false
-format = '[@$hostname](white italic)[:](color5 italic)'
-style = "white"
-trim_at = "."
+[os]
+format = '[$symbol]($style)'
+style = 'color15'
 disabled = false
+
+[os.symbols]
+Alpine = ''
+Arch = ''
+CentOS = ''
+Debian = '󰣚'
+Fedora = ''
+FreeBSD = ''
+Gentoo = ''
+Linux = ''
+Macos = ''
+Mint = ''
+NixOS = ''
+openSUSE = ''
+Raspbian = ''
+Redhat = ''
+RedHatEnterprise = ''
+Ubuntu = ''
+Unknown = ''
+Windows = ''
+
 
 [username]
 style_user = 'color13 italic'
-style_root = 'color13 italic'
-format = '[$user]($style)'
+style_root = 'color5 italic'
+format = '[njen]($style)'
 disabled = false
 show_always = true
 
+[hostname]
+ssh_only = false
+format = '[@$hostname]($style)'
+style = 'color7 italic'
+trim_at = '.'
+disabled = false
+
+[localip]
+ssh_only = false
+format = '@[$localipv4](color8) '
+disabled = false
+
+# [shlvl]
+# disabled = true
+# format = '$shlvl level(s) down'
+# threshold = 3
+
+# [directory.substitutions]
+# "/Documents/" = "  "
+# "Downloads" = " "
+# "Music" = " "
+# "Pictures" = " "
+# "/" = ""
+
 [directory]
-format = '[$path]($style) '
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style) '
-style = "color14 italic"
-before_repo_root_style = "color16 italic"
-repo_root_style = "color6 bold italic underline"
+format = '[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path](color6) '
+style = 'blue italic'
+before_repo_root_style = 'blue italic'
+repo_root_style = 'color14 bold'
 truncation_length = 10
 truncate_to_repo = false
 use_os_path_sep = false
 use_logical_path = false
-home_symbol = "~"
-read_only = " "
+read_only = ' '
+
+[time]
+disabled = false
+time_format = '%R' # Hour:Minute Format
+style = 'color20'
+format = '[  [$time](color18)]($style)'
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+format = "[ $duration]($style)"
+style = "color8"
+
+# [line_break]
+# disabled = false
 
 [git_branch]
+# symbol = ""
 symbol = ""
 # symbol = " "
-format = '[$symbol](color11) [$branch](color11) '
+format = '[$symbol $branch]($style)'
+style = "bright-black"
 
 [git_status]
 disabled = false
-style = "fg:color3 bg:none"
-staged = " ${count} "                                               # nf-fa-check
-modified = "󰤌 ${count} "                                             # nf-fa-edit
-renamed = ""                                                         # nf-md-cursor_text
-untracked = " ${count} "                                            # nf-fa-question
-deleted = "[ ${count}](red) "                                       # nf-fa-remove
-conflicted = " ${count} "                                           # nf-fa-flag
-stashed = ""                                                         # nf-fa-bank
-up_to_date = ""
-ahead = "${count} "                                                 # nf-md-arrow_expand_up
-behind = "${count} "                                                # nf-md-arrow_expand_down
-diverged = "󰯎 ${ahead_count} ${behind_count} "                       # nf-md-arrow_expand_vertical
-ignore_submodules = true
-format = "[($staged$modified$untracked$deleted$conflicted)]($style)"
+format = ' $all_status$ahead_behind$diverged'
+staged     = '[ ](bold green)'
+modified   = '[ ](bold bright-yellow)'
+renamed    = '[ ](bold bright-yellow)'
+deleted    = '[ ](bold red)'
+stashed    = '[󰜦 ](bold color23)'
+untracked  = '[ ](bold color23)'
+conflicted = '[ ](bold red)'
+up_to_date = '[ ](bold green)'
+ahead = '[⇡${count}](bold green)'
+behind = '[⇣${count}](bold red)'
+diverged = '[ ](bold red)([⇡${ahead_count} ](bold green)[⇣${behind_count}](bold red))'
 
-[line_break]
-disabled = true
-
-[cmd_duration]
-format = "[$duration](yellow) "
-disabled = true
+# disabled = false
+# style = 'fg:color3 bg:none'
+# staged = ' ${count} '
+# modified = '󰤌 ${count} '
+# renamed = ''
+# untracked = ' ${count} '
+# deleted = '[ ${count}](red) '
+# conflicted = ' ${count} '
+# stashed = ''
+# up_to_date = ''
+# ahead = '${count} '
+# behind = '${count} '
+# diverged = '󰯎 ${ahead_count} ${behind_count} '
+# ignore_submodules = true
+# format = '[($staged$modified$untracked$deleted$conflicted)]($style)'
 
 [nodejs]
 detect_folders = ['']
 detect_files = ['package.json', '.node-version']
-style = "green"
-format = " [$symbol($version)]($style) "
+style = 'green'
+format = ' [$symbol($version)]($style) '
 
 [ruby]
-symbol = " "
-style = "red"
-format = "[$symbol($version)]($style) "
+symbol = ' '
+style = 'color9'
+format = '[$symbol($version)]($style) '
 
 [python]
-format = '[\($virtualenv\)](yellow)'
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "color2"
+symbol = '🐍 '
+pyenv_version_name = true
 
-[os]
-format = "[$symbol](blue) "
-disabled = true
-
-[os.symbols]
-Alpine = ""
-# Arch = ""
-Arch = ""
-# Arch = "󰚌"
-CentOS = ""
-Debian = "󰣚"
-Fedora = ""
-FreeBSD = ""
-Gentoo = ""
-Linux = ""
-Macos = ""
-Mint = ""
-NixOS = ""
-openSUSE = ""
-Raspbian = ""
-Redhat = ""
-RedHatEnterprise = ""
-Ubuntu = ""
-Unknown = ""
-# Windows = ""
-Windows = "󰍲"
-# Windows = ""
-# Windows = "󰖳"
-# Windows = "󰨡"
-# Windows = "󱇙"
-# Windows = "󰕰"
-# Windows = "󰨑"
-# Windows = "󰚌"
+[character]
+#success_symbol = '[󰇁](color10)'
+#error_symbol = '[󰇁](color9)'
+success_symbol = '[ 󰅂 ](color10)'
+error_symbol= '[ 󰅂 ](color9)'
+vimcmd_symbol = '[:](color4 bold)'
+format = '$symbol '
 
 [palettes.dream]
-color0 = "#2E354F"
-color1 = "#ED558C"
-color2 = "#70FA85"
-color3 = "#FFC994"
-color4 = "#596EFF"
-color5 = "#8202f6"
-color6 = "#00FFD7"
-color7 = "#3b3b3f"
-color8 = "#434E73"
-color9 = "#FD5A96"
-color10 = "#afff87"
-color11 = "#f9ff89"
-color12 = "#5DB1FE"
-color13 = "#875FFF"
-color14 = "#00f2ff"
-color15 = "#C0CAF5"
-foreground = "#D6E4FF"
-background = "#151B30"
-color16 = "#627481"
-color17 = "#7206FF"
+foreground = '#D6E4FF'
+background = '#141C31'
+color0 = '#2E3B59'
+color1 = '#FF4A7B'
+color2 = '#70FA85'
+color3 = '#ffb78e'
+color4 = '#5C8DFF'
+color5 = '#875FFF'
+color6 = '#5BEAFF'
+color7 = '#95C6FF'
+color8 = '#536F8F'
+color9 = '#FF5784'
+color10 = '#afff87'
+color11 = '#FFEE9C'
+color12 = '#66ADFF'
+color13 = '#706EFF'
+color14 = '#00ffee'
+color15 = '#CFE8FC'
+color16 = '#1c5494'
+color17 = '#7206FF'
+color18 = '#9ad6df'
+color19 = '#525773'
+color20 = '#46b4c4'
+color21 = '#18294c'
+color22 = '#b18784'
+color23 = '#beda99'

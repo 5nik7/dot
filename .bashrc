@@ -66,6 +66,11 @@ else
 fi
 export SYSTEMD_EDITOR=$EDITOR
 export VISUAL="$EDITOR"
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias sv="sudo $EDITOR"
+alias svi="sudo $EDITOR"
+alias dots="$EDITOR $DOTFILES"
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm

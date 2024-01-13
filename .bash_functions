@@ -21,24 +21,26 @@ function fixpath() {
 }
 
 function source_file() {
-  if [ -f "$1" ]; then
-    source "$1"
-  fi
+	if [ -f "$1" ]; then
+		source "$1"
+	fi
 }
+function lnk() {
+	orig_file="$DOTFILES/$1"
+	if [ -n "$2" ]; then
+		dest_file="$HOME/$2"
+	else
+		if [[ $1 == config/* ]]; then
+			dest_file="$HOME/.${1}"
+		else
+			dest_file="$HOME/$1"
+		fi
+	fi
 
-function link() {
-    orig_file="$DOTFILES/$1"
-    if [ -n "$2" ]; then
-        dest_file="$HOME/$2"
-    else
-        dest_file="$HOME/$1"
-    fi
+	mkdir -p "$(dirname "$orig_file")"
+	mkdir -p "$(dirname "$dest_file")"
 
-    mkdir -p "$(dirname "$orig_file")"
-    mkdir -p "$(dirname "$dest_file")"
-
-    rm -rf "$dest_file"
-    ln -s "$orig_file" "$dest_file"
-    echo "$dest_file -> $orig_file"
+	rm -rf "$dest_file"
+	ln -s "$orig_file" "$dest_file"
+	echo "$orig_file -> $dest_file"
 }
-

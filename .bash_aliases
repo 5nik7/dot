@@ -1,12 +1,10 @@
-if command -v exa > /dev/null 2>&1; then
-  alias ll="exa -lA --group-directories-first --icons --git --git-repos --no-filesize --no-permissions --no-user --no-time"
-  alias l="exa -lA --group-directories-first --icons --git --git-repos"
+if command -v exa >/dev/null 2>&1; then
+	alias l="exa -lA --group-directories-first --icons --git --git-repos --no-filesize --no-permissions --no-user --no-time"
+	alias ll="exa -lA --group-directories-first --icons --git --git-repos"
 else
-  alias l="ls -lah --color=auto"
-  alias ll="ls -lFh --color=auto"
+	alias l="ls -lah --color=auto"
+	alias ll="ls -lFh --color=auto"
 fi
-# alias l="exa -lA --group-directories-first --icons --git --git-repos --no-filesize --no-permissions --no-user --no-time"
-# alias ll="exa -lA --group-directories-first --icons --git --git-repos"
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -14,15 +12,15 @@ alias grep='grep --color=auto'
 alias c="clear"
 alias q="exit"
 
-if command -v bat > /dev/null 2>&1; then
+if command -v bat >/dev/null 2>&1; then
 	alias cat='bat'
 fi
 
-if command -v lazygit > /dev/null 2>&1; then
+if command -v lazygit >/dev/null 2>&1; then
 	alias lg='lazygit'
 fi
 
-if command -v ranger > /dev/null 2>&1; then
+if command -v ranger >/dev/null 2>&1; then
 	alias d="ranger"
 	alias dd='cd $DOTFILES && ranger'
 	alias dz='cd $DOTFILES/config/zsh && ranger'
@@ -47,9 +45,9 @@ alias v="$EDITOR"
 alias vi="$EDITOR"
 alias sv="sudo $EDITOR"
 alias svi="sudo $EDITOR"
-alias dotfiles="$EDITOR $DOTFILES"
+alias dots="$EDITOR $DOTFILES"
 
-if [ -f /etc/arch-release ] ;then
+if [ -f /etc/arch-release ]; then
 	alias lg='lazygit'
 	# install
 	alias pacin="pacman -Slq | fzf -m --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk \"{print \$2}\")' | xargs -ro sudo pacman -S"
@@ -80,7 +78,7 @@ if [ -f /etc/arch-release ] ;then
 	alias pac-get-update-pkg='pacman -Si $(pacman -Su --print --print-format %n)'
 	alias pac-dependency='pacman -Qoq '
 	# aur
-	if builtin command -v paru > /dev/null 2>&1; then
+	if builtin command -v paru >/dev/null 2>&1; then
 		alias paruin="paru -Slq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print \$2}\")' | xargs -ro  paru -S"
 		alias parucom="paru -Gc"
 		alias parupd="paru -Qua"
