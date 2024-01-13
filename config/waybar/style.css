@@ -10,12 +10,12 @@
 }
 
 window#waybar {
-    background: @transparent;
+    background: @color0;
 }
 window > box {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
   background: @transparent;
 }
 #workspaces {

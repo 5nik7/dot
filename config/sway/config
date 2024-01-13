@@ -17,7 +17,7 @@ include "$DOTFILES/.theme/colors-sway"
 set $mod Mod1
 
 set $font "JetBrainsMono Nerd Font Mono"
-set $font_size 12
+set $font_size 10
 set $cursor_size 16
 
 set $left h
@@ -38,7 +38,7 @@ font pango:$font $font_size
 
 default_border pixel 1
 default_floating_border normal
-gaps inner 5
+gaps inner 0
 # gaps outer 8
 # gaps horizontal 10
 # gaps vertical 10
