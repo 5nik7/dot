@@ -80,4 +80,5 @@ export NVM_DIR="$HOME/.config/nvm"
 #    GIT_PROMPT_ONLY_IN_REPO=1
 #    source "$HOME/.bash-git-prompt/gitprompt.sh"
 # fi
+
 eval "$(starship init bash)"
