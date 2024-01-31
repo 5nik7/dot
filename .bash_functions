@@ -25,6 +25,7 @@ function source_file() {
 		source "$1"
 	fi
 }
+
 function lnk() {
 	orig_file="$DOTFILES/$1"
 	if [ -n "$2" ]; then
