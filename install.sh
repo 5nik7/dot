@@ -86,11 +86,6 @@ echo 'Installing packages...'
 if [[ ! -d $DOTS ]]; then
     git clone https://github.com/5nik7/dot.git $DOTS || error 'Failed to clone repo'
 fi
-if [[ -d $DOTS ]]; then
-    cd $DOTS
-    git pull
-    cd $HOME
-fi
 } || error 'Failed to clone repo'
 
 echo 'Installation complete!'
