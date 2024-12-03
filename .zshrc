@@ -1,25 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Add items to PATH
-if [ -d '~/.bin' ]; then
-  PATH="~/.bin:$PATH"
-fi
-
-if [ -d '~/.local/bin' ]; then
-  PATH="~/.local/bin:$PATH"
-fi
-
-if [ -d '~/.cargo/bin' ]; then
-  PATH="~/.cargo/bin:$PATH"
-fi
-
-
 export WIN="/mnt/c"
 export WOME="$WIN/Users/njen"
-
 export SUDO_PROMPT="passwd: "
-
 
 function extend_path() {
   [[ -d "$1" ]] || return
@@ -50,8 +34,11 @@ function command_exists() {
 
 prepend_path "$HOME/.local/share/bob/nvim-bin"
 prepend_path "$HOME/.fzf/bin"
-prepend_path "$WOME/scoop/apps/win32yank/0.1.1"
-prepend_path "$WIN/vscode/bin"
+prepend_path "$HOME/.cargo/bin"
+prepend_path "$HOME/.local/bin"
+prepend_path "$HOME/.bin"
+extend_path "$WOME/scoop/apps/win32yank/0.1.1"
+extend_path "$WIN/vscode/bin"
 extend_path "$WIN/Windows/System32"
 extend_path "$WIN/Windows"
 
