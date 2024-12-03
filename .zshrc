@@ -59,6 +59,19 @@ alias uninst='sudo pacman -Rs'
 alias inst='sudo pacman -S'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
+function gup() {
+  if [ -d .git ]; then
+  commitDate=$(date +"%m-%d-%Y %H:%M")
+    echo -e ""
+    git add .
+    git commit -m "Update @ $commitDate"
+    git push
+    echo -e ""
+  else 
+    echo -e "This directory does not contain a .git directory"
+  fi
+}
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"

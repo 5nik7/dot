@@ -75,7 +75,7 @@ echo 'Installing packages...'
   sudo pacman --needed --noconfirm -Syu base-devel
   sudo pacman --needed --noconfirm -S \
     sway waybar rofi-wayland \
-    kitty zsh luajit \
+    kitty zsh luajit github-cli \
     starship eza bat ripgrep fd yazi \
     kvantum kvantum-qt5 qt5ct qt6ct gtk2 gtk3 gtk4 \
     iniparser autoconf-archive pkgconf xdg-user-dirs wget unzip \
