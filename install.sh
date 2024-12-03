@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTS=$HOME/dot
+
 # Import OS info as variables
 . /etc/os-release
 
@@ -11,7 +13,7 @@ if [[ $ID != 'arch' ]]; then
   exit 1
 fi
 
-printf '\033[1;33m dot \033[0m \n'
+printf '\033[1;33mDOT INSTALLER \033[0m \n'
 read -p 'Continue? (y/N) ' confirmation
 confirmation=$(echo "$confirmation" | tr '[:lower:]' '[:upper:]')
 if [[ "$confirmation" == 'N' ]] || [[ "$confirmation" == '' ]]; then
@@ -60,32 +62,40 @@ echo 'Installing packages...'
     ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
 } || error 'Failed to install required packages'
 
-echo 'Installing rust...'
 {
-sudo pacman --noconfirm -Rs rust
 if [[ ! $(pacman -Q rustup > /dev/null 2>&1) ]]; then
-        sudo pacman --needed --noconfirm -S rustup
-        rustup default nightly
+    echo 'Installing rust...'
+    sudo pacman --noconfirm -Rs rust
+    sudo pacman --needed --noconfirm -S rustup
 fi
 } || error 'Failed to install rust'
 
+{
+  if [[ ! -e $HOME/.cargo/bin/bob ]]; then
+    rustup default nightly
+    cargo install --git https://github.com/MordechaiHadad/bob.git
+  fi
+} || error 'Failed to install Macchina'
 
 {
-DOTS=$HOME/dot
-export $DOTS
 if [[ ! -d $DOTS ]]; then
     git clone https://github.com/5nik7/dot.git $DOTS || error 'Failed to clone repo'
+fi
+if [[ -d $DOTS ]]; then
+    cd $DOTS
+    git pull
+    cd $HOME
 fi
 } || error 'Failed to clone repo'
 
 {
-if [[ -e $(which zsh) ]]; then
+if [[ -e /bin/zsh ]] && [[ $SHELL =/= '/bin/zsh' ]]; then
   read -p 'Change shell to zsh? (y/N) ' modifyZshrc
   modifyZshrc=$(echo "$modifyZshrc" | tr '[:lower:]' '[:upper:]')
   if [[ "$modifyZshrc" == 'Y' ]]; then
     backUp $HOME '.zshrc'
-    ln -s $HOME/dot/.zshrc $HOME/.zshrc
-    sudo chsh -s $(which zsh)
+    ln -s $DOTS/.zshrc $HOME/.zshrc
+fi
 fi
 } || error 'Failed to change shell to zsh'
 
