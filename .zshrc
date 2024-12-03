@@ -1,5 +1,25 @@
+#     ____  ______ _____  _____
+#    /_  / / __/ // / _ \/ ___/
+#   _ / /__\ \/ _  / , _/ /__
+#  (_)___/___/_//_/_/|_|\___/
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+ [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+ source "${ZINIT_HOME}/zinit.zsh"
+
+zinit load zdharma-continuum/fast-syntax-highlighting
+zinit load zsh-users/zsh-autosuggestions
+zinit load zsh-users/zsh-completions
+zinit load zsh-users/zsh-history-substring-search
+
+ autoload -Uz _zinit
+ (( ${+_comps} )) && _comps[zinit]=_zinit
+
+zle_highlight=('paste:none')
 
 export WIN="/mnt/c"
 export WOME="$WIN/Users/njen"
@@ -111,6 +131,10 @@ alias ll='echo -e "" && eza -lA --git --git-repos --icons --group-directories-fi
 alias l='echo -e "" && eza -lA --git --git-repos --icons --group-directories-first --no-quotes --no-permissions --no-filesize --no-user --no-time && echo -e ""'
 
 alias cargo="RUSTFLAGS='-Z threads=8' cargo +nightly"
+
+function google {
+    open "https://www.google.com/search?q=$*"
+}
 
 command_exists fzf && command_exists bat && alias preview="fzf --preview 'bat --color \"always\" {}'"
 
