@@ -75,8 +75,8 @@ echo 'Installing packages...'
   sudo pacman --needed --noconfirm -Syu base-devel
   sudo pacman --needed --noconfirm -S \
     sway waybar rofi-wayland \
-    kitty zsh starship luajit \
-    eza bat \
+    kitty zsh luajit \
+    starship eza bat ripgrep fd yazi \
     kvantum kvantum-qt5 qt5ct qt6ct gtk2 gtk3 gtk4 \
     iniparser autoconf-archive pkgconf xdg-user-dirs wget unzip \
     ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
