@@ -51,19 +51,8 @@ backUp() {
 
 # ==== Install packages ==== #
 
-echo 'Installing packages...'
 {
-  sudo pacman --needed --noconfirm -Syu base-devel
-  sudo pacman --needed --noconfirm -S \
-    sway waybar rofi-wayland \
-    kitty zsh starship luajit \
-    kvantum kvantum-qt5 qt5ct qt6ct gtk2 gtk3 gtk4 \
-    iniparser autoconf-archive pkgconf xdg-user-dirs wget unzip \
-    ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
-} || error 'Failed to install required packages'
-
-{
-if [[ ! $(pacman -Q rustup > /dev/null 2>&1) ]]; then
+if [[ ! -e /bin/rustup ]]; then
     echo 'Installing rust...'
     sudo pacman --noconfirm -Rs rust
     sudo pacman --needed --noconfirm -S rustup
@@ -71,11 +60,27 @@ fi
 } || error 'Failed to install rust'
 
 {
+if [[ $(rustup default) = nightly* ]]; then
   if [[ ! -e $HOME/.cargo/bin/bob ]]; then
-    rustup default nightly
     cargo install --git https://github.com/MordechaiHadad/bob.git
   fi
+else
+  rustup default nightly
+  argo install --git https://github.com/MordechaiHadad/bob.git
+fi
 } || error 'Failed to install Macchina'
+
+echo 'Installing packages...'
+{
+  sudo pacman --needed --noconfirm -Syu base-devel
+  sudo pacman --needed --noconfirm -S \
+    sway waybar rofi-wayland \
+    kitty zsh starship luajit \
+    eza bat \
+    kvantum kvantum-qt5 qt5ct qt6ct gtk2 gtk3 gtk4 \
+    iniparser autoconf-archive pkgconf xdg-user-dirs wget unzip \
+    ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono
+} || error 'Failed to install required packages'
 
 {
 if [[ ! -d $DOTS ]]; then
@@ -87,16 +92,5 @@ if [[ -d $DOTS ]]; then
     cd $HOME
 fi
 } || error 'Failed to clone repo'
-
-{
-if [[ -e /bin/zsh ]] && [[ $SHELL =/= '/bin/zsh' ]]; then
-  read -p 'Change shell to zsh? (y/N) ' modifyZshrc
-  modifyZshrc=$(echo "$modifyZshrc" | tr '[:lower:]' '[:upper:]')
-  if [[ "$modifyZshrc" == 'Y' ]]; then
-    backUp $HOME '.zshrc'
-    ln -s $DOTS/.zshrc $HOME/.zshrc
-fi
-fi
-} || error 'Failed to change shell to zsh'
 
 echo 'Installation complete!'
